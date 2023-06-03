@@ -122,6 +122,17 @@ body{
     gap: 40px;
 }
 
+.current-page::after{
+    content: '';
+    width: 100%;
+    height: 4px;
+    background-color: var(--hover-focus-color);
+    border-radius: 2px;
+    position: absolute;
+    display: block;
+    margin-top: 20px;
+}
+
 .list-item {
     font-weight: 500;
     font-size: 16px;
@@ -135,6 +146,11 @@ body{
 }
 .list-item:hover,
 .list-item:focus{
+    color: var(--hover-focus-color);
+}
+
+.current-page{
+    position: relative;
     color: var(--hover-focus-color);
 }
 
@@ -559,6 +575,7 @@ margin-left: auto;
     position: fixed;
     background-color: rgba(46, 47, 66, 0.4);
     top: 0;
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1), visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modal{
@@ -570,8 +587,13 @@ margin-left: auto;
     border-radius: 4px;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(1);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
     padding: 24px;
+}
+
+.backdrop.is-hidden .modal{
+    transform: translate(-50%, -50%) scale(0);
 }
 
 .modal-close{
